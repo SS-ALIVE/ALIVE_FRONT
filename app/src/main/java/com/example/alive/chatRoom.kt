@@ -405,6 +405,7 @@ class chatRoom : AppCompatActivity() {
                 intent.putExtra("myVideoPath", data.videopath.toString())
 
                 startActivity(intent)
+                adapter.notifyDataSetChanged()
                 adapter.notifyItemChanged(position)
             }
         }
