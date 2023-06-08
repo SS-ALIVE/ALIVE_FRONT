@@ -266,7 +266,6 @@ class chatRoom : AppCompatActivity() {
                 var myUri: Uri? = null
 
                 if (responseBody != null) {
-                    Toast.makeText(this@chatRoom, "get success", Toast.LENGTH_SHORT).show()
                     CoroutineScope(Dispatchers.IO).launch {
                         myUri = saveVideoToFile(responseBody, "test1")
                         withContext(Dispatchers.Main) {
@@ -374,7 +373,7 @@ class chatRoom : AppCompatActivity() {
 
     fun initSendVideo(videouri:Uri?) {
         if(videouri==null){
-            Toast.makeText(applicationContext, "동영상 재생 준비 완료", Toast.LENGTH_SHORT).show()
+
         }
         setTime()
         data.add(Message(2,2,2, "d", time,videouri))
@@ -399,7 +398,6 @@ class chatRoom : AppCompatActivity() {
         adapter = MychatAdapter(data,this)
         adapter.itemClickListener = object : MychatAdapter.OnItemClickListener {
             override fun OnItemClick(data: Message, position: Int) {
-                Toast.makeText(this@chatRoom,data.videopath.toString(),Toast.LENGTH_SHORT).show()
                 val intent = Intent(this@chatRoom, VideoActivity::class.java)
 
                 intent.putExtra("myVideoPath", data.videopath.toString())
