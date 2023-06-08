@@ -98,7 +98,7 @@
                     android:layout_weight="2"
                     android:textSize="15dp"
                     android:textColor="@color/white"
-                    android:text="K-GPT"
+                    android:text="ALIVE"
                     android:layout_marginBottom="10dp"
                     android:gravity="bottom"
                     />
