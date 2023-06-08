@@ -218,7 +218,6 @@ class chatRoom : AppCompatActivity() {
         val videoPart = MultipartBody.Part.createFormData("file", file.name, requestFile)
 
         val userService = RetrofitClient.userService
-
         val call = userService.uploadFile(videoPart)
 
         GlobalScope.launch(Dispatchers.Main) {

@@ -47,6 +47,7 @@
             android:layout_weight="2"
             android:textSize="15dp"
             android:text="건국대학교 산학협력 프로젝트"
+            android:textColor="@color/black"
 
             android:gravity="bottom"
             />
@@ -57,6 +58,7 @@
             android:layout_weight="2"
             android:text="Team SS"
             android:textSize="12dp"
+            android:textColor="@color/black"
             android:gravity="top"/>
         </LinearLayout>
     </LinearLayout>
