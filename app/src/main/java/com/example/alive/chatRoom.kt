@@ -10,6 +10,7 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
+import android.provider.Settings.Global
 import android.util.Log
 import android.view.MotionEvent
 import android.widget.LinearLayout
@@ -192,8 +193,7 @@ class chatRoom : AppCompatActivity() {
                             initSendVideo(videoUri)
 
                             postVideo(videoUri)
-                            //Thread.sleep(20000)
-                            getVideo()
+                            //getVideo()
                         } else {
                             // 동영상 파일 저장 실패
                             // 에러 처리
@@ -221,16 +221,26 @@ class chatRoom : AppCompatActivity() {
 
         val call = userService.uploadFile(videoPart)
 
-        call.enqueue(object : Callback<UploadRes> {
-            override fun onResponse(call: Call<UploadRes>, response: Response<UploadRes>) {
-                // 파일 업로드 성공
+        GlobalScope.launch(Dispatchers.Main) {
+            val job1 = async(Dispatchers.IO) {
+                val data = call.execute().body()
             }
 
-            override fun onFailure(call: Call<UploadRes>, t: Throwable) {
-                // 파일 업로드 실패
-                Toast.makeText(this@chatRoom, "fail - " + t.message, Toast.LENGTH_SHORT).show()
-            }
-        })
+            val result1 = job1.await()
+            getVideo()
+        }
+//
+//        call.enqueue(object : Callback<UploadRes> {
+//            override fun onResponse(call: Call<UploadRes>, response: Response<UploadRes>) {
+//                // 파일 업로드 성공
+//
+//            }
+//
+//            override fun onFailure(call: Call<UploadRes>, t: Throwable) {
+//                // 파일 업로드 실패
+//                Toast.makeText(this@chatRoom, "fail - " + t.message, Toast.LENGTH_SHORT).show()
+//            }
+//        })
     }
 
     @SuppressLint("SuspiciousIndentation")
