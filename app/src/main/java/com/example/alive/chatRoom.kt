@@ -266,7 +266,6 @@ class chatRoom : AppCompatActivity() {
                 var myUri: Uri? = null
 
                 if (responseBody != null) {
-                    Toast.makeText(this@chatRoom, "get success", Toast.LENGTH_SHORT).show()
                     CoroutineScope(Dispatchers.IO).launch {
                         myUri = saveVideoToFile(responseBody, "test1")
                         withContext(Dispatchers.Main) {
