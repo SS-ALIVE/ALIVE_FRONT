@@ -58,7 +58,6 @@ class MychatAdapter(
 
     inner class MyVideoViewHolder(val binding: MyVideoChatItemBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(message: Message){
-            binding.chatVideoView.stopPlayback()
 
 //            binding.chatVideoView.start()
             binding.timeTextView.text = message.time
@@ -80,21 +79,9 @@ class MychatAdapter(
         }
 
     }
-    override fun onViewRecycled(holder: RecyclerView.ViewHolder) {
-        if (holder is MyVideoViewHolder) {
-            val position = holder.position
-            if (position != RecyclerView.NO_POSITION) {
-                val message = currentList[position]
-                message.isVideoPlaying = holder.binding.chatVideoView.isPlaying
-                message.videoPosition = holder.binding.chatVideoView.currentPosition
-            }
-        }
-        super.onViewRecycled(holder)
-    }
 
     inner class OtherVideoViewHolder(val binding: OtherVideoChatItemBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(message: Message){
-            binding.chatVideoView.setVideoURI(message.videopath)
             binding.timeTextView.text = message.time
             binding.profileImageView.setImageResource(R.drawable.circuit)
         }
