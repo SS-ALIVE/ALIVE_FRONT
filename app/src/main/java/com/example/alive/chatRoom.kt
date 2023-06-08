@@ -224,10 +224,22 @@ class chatRoom : AppCompatActivity() {
         GlobalScope.launch(Dispatchers.Main) {
             val job1 = async(Dispatchers.IO) {
                 val data = call.execute().body()
+                data
             }
 
-            val result1 = job1.await()
-            getVideo()
+            val result1 = job1.await() as UploadRes
+            if (result1 == null)
+                Toast.makeText(this@chatRoom, "body null return", Toast.LENGTH_SHORT).show()
+            else if (result1.isSuccess == true){
+                Thread.sleep(1000)
+                getVideo()
+            }
+            else{
+                data.add(Message(0, 0, 0, "fail", time,null,false))
+                adapter.submitList(data)
+                adapter.notifyDataSetChanged()
+                binding.recyclerView.scrollToPosition(data.size-1)
+            }
         }
 //
 //        call.enqueue(object : Callback<UploadRes> {
