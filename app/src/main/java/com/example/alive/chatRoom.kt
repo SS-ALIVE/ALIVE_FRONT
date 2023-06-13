@@ -230,7 +230,6 @@ class chatRoom : AppCompatActivity() {
             if (result1 == null)
                 Toast.makeText(this@chatRoom, "body null return", Toast.LENGTH_SHORT).show()
             else if (result1.isSuccess == true){
-                Thread.sleep(1000)
                 getVideo()
             }
             else{
